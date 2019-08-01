@@ -11,4 +11,4 @@
 
 ## Application starts from index.py
 
-`index.py`
+`python index.py`
