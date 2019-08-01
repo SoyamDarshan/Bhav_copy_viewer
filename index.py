@@ -16,7 +16,6 @@ class Index(object):
     def index(self):
         template = env.get_template('top_10_values.html')
         table_data = redis_connection.get_top_10_stocks()
-        # print(table_data)
         return template.render(title='Stock Data',
                                description="Top 10 stock",
                                table_data=table_data)
@@ -47,5 +46,4 @@ if __name__ == '__main__':
             'tools.staticdir.root': os.path.abspath(os.getcwd())
     },
     }
-    # print(conf)
     cherrypy.quickstart(Index(), '/', config=conf)

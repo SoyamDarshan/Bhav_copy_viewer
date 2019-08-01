@@ -20,7 +20,6 @@ def find_column_number(field_names):
 
 try:
     files_available = glob.glob('./extracted_files/*')
-    # Get most recent file
     file_name = max(files_available, key=os.path.getctime)
     print(f'loading {file_name} into the DB')
 
@@ -35,7 +34,6 @@ try:
     with open(file_name, 'r') as csvfile:
         read_csv = csv.reader(csvfile, delimiter=',')
         column_numbers = find_column_number(field_names)
-        # print(column_numbers)
         data = next(read_csv)
         rc = redis_connection.redis_connect()
         rc.flushall()
@@ -49,7 +47,6 @@ try:
                 'low': data[column_numbers['low']].strip(),
                 'close': data[column_numbers['close']].strip(),
             }
-            # print(insert_data)
 
             redis_connection.insert_into_redis(rc, key_name, insert_data)
 except:
