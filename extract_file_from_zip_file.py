@@ -17,10 +17,7 @@ def check_most_recent_file_available(name):
 
 try:
     files_available = glob.glob('downloads/*')
-    # print(files_available)
-    # Get most recent file
     file_name = max(files_available, key=os.path.getctime)
-    # print(file_name)
 
     with ZipFile(file_name, 'r') as zip:
         zip.printdir()
